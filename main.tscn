@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bc1fl8jgwwlti"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1vivr"]
+
+[node name="Main" type="Node2D" unique_id=877679313]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1643639811]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1403308655]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=2065030843]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=960829793]
+sprite_frames = SubResource("SpriteFrames_1vivr")
