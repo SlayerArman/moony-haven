@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://bc1fl8jgwwlti"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1vivr"]
+animations = [{
+"frames": [],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}]
 
 [node name="Main" type="Node2D" unique_id=877679313]
 
@@ -12,3 +18,4 @@
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=960829793]
 sprite_frames = SubResource("SpriteFrames_1vivr")
+animation = &"Idle"
