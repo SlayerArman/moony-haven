@@ -14,6 +14,10 @@ config/name="Moony Haven"
 run/main_scene="uid://bc1fl8jgwwlti"
 config/features=PackedStringArray("4.7", "Mobile")
 
+[autoload]
+
+GameManager="*uid://bd54wjgb3gun1"
+
 [display]
 
 window/stretch/mode="canvas_items"

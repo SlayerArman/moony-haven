@@ -3,6 +3,8 @@ extends CharacterBody2D
 const SPEED = 120.0
 const JUMP_VELOCITY = -300.0
 
+@export var fall_limit_y: float = 630
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var animated_sprite = $AnimatedSprite2D
@@ -23,6 +25,9 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+	if global_position.y > fall_limit_y:
+		restart_scene()
+
 func update_animation(direction):
 	if direction > 0:
 		animated_sprite.flip_h = false
@@ -35,3 +40,6 @@ func update_animation(direction):
 		animated_sprite.play("Running")
 	else:
 		animated_sprite.play("Idle")
+
+func restart_scene():
+	get_tree().reload_current_scene()
