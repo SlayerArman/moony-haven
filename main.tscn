@@ -222,6 +222,7 @@ tile_map_data = PackedByteArray("AAACACIAAAAAAAAAAAADACIAAAACAAAAAAAEACIAAAABAAA
 tile_set = SubResource("TileSet_1vivr")
 
 [node name="Star" type="Area2D" parent="." unique_id=780273899]
+position = Vector2(-2, -1)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star" unique_id=659802118]
@@ -236,7 +237,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star2" type="Area2D" parent="." unique_id=2145894201]
-position = Vector2(51, -1)
+position = Vector2(76, 1)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star2" unique_id=625555204]
@@ -251,7 +252,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star3" type="Area2D" parent="." unique_id=618543470]
-position = Vector2(147, -1)
+position = Vector2(472, -8)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star3" unique_id=915586983]
@@ -266,7 +267,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star4" type="Area2D" parent="." unique_id=1350852683]
-position = Vector2(147, -1)
+position = Vector2(140, 2)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star4" unique_id=764730476]
@@ -281,7 +282,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star5" type="Area2D" parent="." unique_id=581338384]
-position = Vector2(243, -2)
+position = Vector2(243, -48)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star5" unique_id=1560068876]
@@ -296,7 +297,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star6" type="Area2D" parent="." unique_id=157150709]
-position = Vector2(310, -33)
+position = Vector2(332, -35)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star6" unique_id=1707572459]
@@ -311,7 +312,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star7" type="Area2D" parent="." unique_id=1981306389]
-position = Vector2(380, -32)
+position = Vector2(724, 29)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star7" unique_id=1639472687]
@@ -326,7 +327,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star8" type="Area2D" parent="." unique_id=789137679]
-position = Vector2(508, 31)
+position = Vector2(556, 32)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star8" unique_id=121404990]
@@ -341,7 +342,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star9" type="Area2D" parent="." unique_id=2001721905]
-position = Vector2(634, 30)
+position = Vector2(638, 31)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star9" unique_id=977750581]
@@ -356,7 +357,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star10" type="Area2D" parent="." unique_id=253760050]
-position = Vector2(798, -1)
+position = Vector2(888, -32)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star10" unique_id=1098368109]
@@ -371,7 +372,7 @@ scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
 
 [node name="Star11" type="Area2D" parent="." unique_id=697530653]
-position = Vector2(1012, 17)
+position = Vector2(1007, 15)
 script = ExtResource("4_lquwl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star11" unique_id=609357177]
@@ -381,6 +382,21 @@ sprite_frames = SubResource("SpriteFrames_8vrlf")
 animation = &"Star"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Star11" unique_id=898382075]
+position = Vector2(107.44, 519.76)
+scale = Vector2(0.4399998, 0.4399998)
+shape = SubResource("CircleShape2D_v5gy4")
+
+[node name="Star12" type="Area2D" parent="." unique_id=669857267]
+position = Vector2(799, -58)
+script = ExtResource("4_lquwl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Star12" unique_id=784134744]
+position = Vector2(107, 518)
+scale = Vector2(0.4399998, 0.4399998)
+sprite_frames = SubResource("SpriteFrames_8vrlf")
+animation = &"Star"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Star12" unique_id=1621003957]
 position = Vector2(107.44, 519.76)
 scale = Vector2(0.4399998, 0.4399998)
 shape = SubResource("CircleShape2D_v5gy4")
@@ -404,3 +420,4 @@ text = "Moony Haven!"
 [connection signal="body_entered" from="Star9" to="Star9" method="_on_body_entered"]
 [connection signal="body_entered" from="Star10" to="Star10" method="_on_body_entered"]
 [connection signal="body_entered" from="Star11" to="Star11" method="_on_body_entered"]
+[connection signal="body_entered" from="Star12" to="Star12" method="_on_body_entered"]
