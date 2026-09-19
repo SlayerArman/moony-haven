@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
 const SPEED = 120.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -250.0
 
-@export var fall_limit_y: float = 630
+@export var fall_limit_y: float = 9999999
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
