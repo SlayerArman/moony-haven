@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 120.0
 const JUMP_VELOCITY = -250.0
 const DOUBLE_JUMP_VELOCITY = -200
+const CLIMB_SPEED = 80.0
 
 @export var fall_limit_y: float = 9999999
 @export var interact_label: Label
@@ -11,10 +12,39 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var has_double_jump = false
 var fade_tween: Tween
 var is_prompt_active: bool = false
+var is_climbing: bool = false
 
 @onready var animated_sprite = $AnimatedSprite2D
 
+func _ready():
+	if not interact_label:
+		interact_label = get_tree().current_scene.get_node_or_null("CanvasLayer/InteractLabel")
+	if interact_label:
+		interact_label.visible = false
+
 func _physics_process(delta):
+	if is_climbing:
+		velocity.x = 0
+		velocity.y = -CLIMB_SPEED
+
+		if animated_sprite.sprite_frames.has_animation("Climb"):
+			animated_sprite.play("Climb")
+
+		move_and_slide()
+
+		var tilemap = get_tree().current_scene.get_node_or_null("Interactables")
+		if tilemap:
+			var player_tile_pos = tilemap.local_to_map(tilemap.to_local(global_position))
+			var tile_data = tilemap.get_cell_tile_data(player_tile_pos)
+			if tile_data == null:
+				stop_climbing()
+
+		# Jump off the ladder
+		if Input.is_action_just_pressed("Jump"):
+			stop_climbing()
+			velocity.y = JUMP_VELOCITY
+
+		return
 
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -53,15 +83,16 @@ func update_animation(direction):
 	else:
 		animated_sprite.play("Idle")
 
-func _process(delta):
-	check_tile_under_player()
+func _process(_delta):
+	if not is_climbing:
+		check_tile_under_player()
 	
 	if is_prompt_active and Input.is_action_just_pressed("Interact"):
 		on_interact()
 
 func check_tile_under_player():
 	if not interact_label:
-		interact_label = get_tree().current_scene.get_node_or_null("InteractLabel")
+		interact_label = get_tree().current_scene.get_node_or_null("CanvasLayer/InteractLabel")
 	if not interact_label:
 		return
 		
@@ -87,9 +118,9 @@ func show_prompt():
 	if fade_tween and fade_tween.is_running():
 		fade_tween.kill()
 
+	var player_screen_pos = get_global_transform_with_canvas().origin
 	var x_offset = interact_label.size.x / 2.0
-	interact_label.global_position = global_position + Vector2(-x_offset, -40.0)
-
+	interact_label.global_position = player_screen_pos + Vector2(-x_offset, -40.0)
 	interact_label.modulate.a = 1.0
 	interact_label.visible = true
 
@@ -105,7 +136,45 @@ func hide_prompt_with_fade():
 	fade_tween.tween_callback(func(): interact_label.visible = false)
 
 func on_interact():
-	print("Interacted with tile!")
+	var tilemap = get_tree().current_scene.get_node_or_null("Interactables")
+	if not tilemap:
+		return
+
+	var player_tile_pos = tilemap.local_to_map(tilemap.to_local(global_position))
+	var tile_data = tilemap.get_cell_tile_data(player_tile_pos)
+
+	if tile_data != null:
+		var interact_type = tile_data.get_custom_data("interact_type")
+
+		match interact_type:
+			"ladder":
+				start_climbing(tilemap, player_tile_pos)
+			"chest":
+				open_chest(tilemap, player_tile_pos)
+			_:
+				print("Interacted with default/unassigned tile type: ", interact_type)
+
+func open_chest(tilemap: TileMapLayer, tile_pos: Vector2i):
+	print("Opened chest at position: ", tile_pos)
+	
+	if interact_label:
+		interact_label.visible = false
+	is_prompt_active = false
+
+func start_climbing(tilemap: TileMapLayer, tile_pos: Vector2i):
+	is_climbing = true
+
+	var tile_local_center = tilemap.map_to_local(tile_pos)
+	var tile_global_center = tilemap.to_global(tile_local_center)
+	global_position.x = tile_global_center.x
+
+	if interact_label:
+		interact_label.visible = false
+	is_prompt_active = false
+
+func stop_climbing():
+	is_climbing = false
+	velocity.y = 0
 
 func restart_scene():
 	get_tree().reload_current_scene()
