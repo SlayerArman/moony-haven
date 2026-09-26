@@ -1,4 +1,4 @@
-# Moony Have
+# Moony Haven
 > Cool 2D Game
 
 This is 2D platformer game with fun controls and mechanics. The graphics of the game are like hand drawn pixelart stuff. The game is fully expandable.
